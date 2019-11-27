@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" /> 
+        <title>URA Winner!</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
+    <body>
+        <h1>URA Winner!</h1>
+        <div id="container">
+            <main>
+                
+<h2>Create your URA Profile</h2>
+<form id="regform" action="a_QW.html">
+    <label>
+        <span>Full name:</span>
+        <div><input></div>
+    </label>
+    <label>
+        <span>First name / Nickname:</span>
+        <div><input></div>
+    </label>
+    <hr>
+    <label>
+        <span>Gender identity:</span>
+        <div><select onchange="updateclass()">
+                <option>-- Select one --</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option id="gender-other">Other / Non-gender-conforming</option>
+                <option id="gender-decline">Decline to state</option>
+        </select></div>
+    </label>
+    <label id="pronounrow">
+        <span>Preferred pronouns:</span>
+        <div><select onchange="updateclass()">
+                <option>-- Select one --</option>
+                <option>He/his</option>
+                <option>She/her</option>
+                <option>It/its</option>
+                <option>They/their</option>
+                <option>Say my name over and over</option>
+                <option id="pronouns-other">Other...</option>
+        </select></div>
+    </label>
+    <hr class="custompronoun">
+    <label class="custompronoun">
+        <span>Nominative pronoun:</span>
+        <div><input placeholder="(e.g. they)"></div>
+    </label>
+    <label class="custompronoun">
+        <span>Oblique pronoun:</span>
+        <div><input placeholder="(e.g. them)"></div>
+    </label>
+    <label class="custompronoun">
+        <span>Reflexive pronoun:</span>
+        <div><input placeholder="(e.g. themself)"></div>
+    </label>
+    <label class="custompronoun">
+        <span>Possessive determiner:</span>
+        <div><input placeholder="(e.g. their)"></div>
+    </label>
+    <label class="custompronoun">
+        <span>Possessive pronoun:</span>
+        <div><input placeholder="(e.g. theirs)"></div>
+    </label>
+    <label class="custompronoun">
+        <span>Verbs conjugate:</span>
+        <div><select onchange="updateclass()">
+                <option>Using singular forms ("is", "dances")</option>
+                <option>Using plural forms ("are", "dance")</option>
+                <option>Using nautical forms ("be", "yarr")</option>
+                <option id="conjugations-other">Using other forms...</option>
+        </select></div>
+    </label>
+    <hr class="conjugation">
+    
+    <label class="conjugation">
+        <span>Present tense of be:</span>
+        <div><input></div>
+    </label>
+    <label class="conjugation">
+        <span>Past tense of be:</span>
+        <div><input></div>
+    </label>
+    
+    <label class="conjugation">
+        <span>Present tense of do:</span>
+        <div><input></div>
+    </label>
+    <label class="conjugation">
+        <span>Past tense of do:</span>
+        <div><input></div>
+    </label>
+    
+    <label class="conjugation">
+        <span>Present tense of go:</span>
+        <div><input></div>
+    </label>
+    <label class="conjugation">
+        <span>Past tense of go:</span>
+        <div><input></div>
+    </label>
+    
+    <label class="conjugation">
+        <span>Present tense of have:</span>
+        <div><input></div>
+    </label>
+    <label class="conjugation">
+        <span>Past tense of have:</span>
+        <div><input></div>
+    </label>
+    
+    <label class="conjugation">
+        <span>Present tense of learn:</span>
+        <div><input></div>
+    </label>
+    <label class="conjugation">
+        <span>Past tense of learn:</span>
+        <div><input></div>
+    </label>
+    
+    <label class="conjugation">
+        <span>Present tense of like:</span>
+        <div><input></div>
+    </label>
+    <label class="conjugation">
+        <span>Past tense of like:</span>
+        <div><input></div>
+    </label>
+    
+    <label class="conjugation">
+        <span>Present tense of make:</span>
+        <div><input></div>
+    </label>
+    <label class="conjugation">
+        <span>Past tense of make:</span>
+        <div><input></div>
+    </label>
+    
+    <label class="conjugation">
+        <span>Present tense of read:</span>
+        <div><input></div>
+    </label>
+    <label class="conjugation">
+        <span>Past tense of read:</span>
+        <div><input></div>
+    </label>
+    
+    <label class="conjugation">
+        <span>Present tense of respond:</span>
+        <div><input></div>
+    </label>
+    <label class="conjugation">
+        <span>Past tense of respond:</span>
+        <div><input></div>
+    </label>
+    
+    <label class="conjugation">
+        <span>Present tense of want:</span>
+        <div><input></div>
+    </label>
+    <label class="conjugation">
+        <span>Past tense of want:</span>
+        <div><input></div>
+    </label>
+    
+    <label class="conjugation">
+        <span>Present tense of write:</span>
+        <div><input></div>
+    </label>
+    <label class="conjugation">
+        <span>Past tense of write:</span>
+        <div><input></div>
+    </label>
+    
+    <hr>
+    <label>
+        <span>School:</span>
+        <div><input></div>
+    </label>
+    <label>
+        <span>Student ID number:</span>
+        <div><input></div>
+    </label>
+    <hr>
+    <label>
+        <span></span>
+        <div><input type="submit" value="Create Account"></div>
+    </label>
+</form>
+<script>
+   function updateclass() {
+       var form = document.getElementById('regform');
+       form.className = '';
+       if (document.getElementById('gender-other').selected || document.getElementById('gender-decline').selected) {
+           form.className += 'other-gender ';
+       } else {
+           return;
+       }
+
+       if (document.getElementById('pronouns-other').selected) {
+           form.className += 'other-pronouns ';
+       } else {
+           return;
+       }
+
+       if (document.getElementById('conjugations-other').selected) {
+           form.className += 'other-conjugations';
+       }
+   }
+   updateclass();
+</script>
+
+            </main>
+        </div>
+        
+    </body>
+</html>

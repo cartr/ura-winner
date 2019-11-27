@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" /> 
+        <title>URA Winner!</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
+    <body>
+        <h1>URA Winner!</h1>
+        <div id="container">
+            <main>
+                
+<table id="homepage-table" cellpadding="50" cellspacing="0">
+    <tr>
+        <td width="50%" id="homepage-getting-started">
+            <center>
+                Using this software for the first time?
+                <br />
+                <br />
+                <a href="c8O.html"><img src="btn_create_acct.png" alt="Create Account" /></a>
+            </center>
+        </td>
+        <td width="50%" id="homepage-classcode">
+            <center>
+                If you have a class code, enter it here:
+                <br />
+                <br />
+                <form action="wRXo.html" method="GET">
+                    <input size="10" id="classcode" >
+                    <input type="submit" value="Submit">
+                </form>
+            </center>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" id="homepage-purchase">
+            <center>
+              <cite>URA Winner!</cite> is the only digital test-preparation software officially recognized by the creators of the Undergraduate Readiness Assessment. For purchasing details, contact your school's URA Sales Representative.
+            </center>
+        </td>
+    </tr>
+</table>
+<script>
+var classcode = document.getElementById('classcode');
+classcode.oninput = function() {
+    
+    var i = 0;
+    for (var j = 0; j < classcode.value.length; j++) {
+        var letter = classcode.value[j];
+        if (i === 0 && (letter === 'p' || letter === 'P')) { i++; }
+        else if ((i === 1 || i === 2) && (letter === 'b' || letter === 'B')) { i++; }
+        else if (i === 3 && letter === '4') { i++; }
+        else if (i === 4 && (letter === 'G' || letter === 'g')) { i++; }
+        else if (i === 5 && letter === '7') {
+            window.location = "1MCA.html";
+        }
+    }
+    
+}
+</script>
+
+            </main>
+        </div>
+        
+    </body>
+</html>

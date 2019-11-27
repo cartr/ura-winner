@@ -1,0 +1,216 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+* {
+    border-color: #330;
+}
+body {
+    background-color: #06c;
+    background-image: url(bg.png);
+    background-position: center;
+    font: 12px Verdana,sans-serif;
+}
+
+h1 {
+    width: 640px;
+    height: 77px;
+    margin: auto;
+    margin-top: 16px;
+    background-image: url(title.png);
+    text-indent: -9999px;
+}
+
+h2 {
+    font-size: 12px;
+    font-weight: normal;
+    font-style: italic;
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+strong {
+    font-weight: normal;
+    font-style: italic;
+}
+
+#container {
+    width: 598px;
+    background-color: #ffc;
+    border: 1px solid #330;
+    border-top-color: #ffc;
+    margin: auto;
+    margin-bottom: 16px;
+}
+
+main {
+    margin: 12px;
+    margin-top: 0;
+}
+
+a, .link {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    font-style: normal;
+}
+
+a:hover, .link:hover {
+    text-decoration: underline;
+}
+
+a.disabled, .link.disabled {
+    color: grey;
+    text-decoration: line-through;
+}
+
+.pager nav {
+    text-align: right;
+    float: right;
+}
+
+blockquote {
+    margin: 24px;
+    padding: 14px;
+    font-size: 16px;
+    font-family: "Times New Roman", serif;
+    background: white;
+    border: 1px solid black;
+}
+
+li {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.question {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.answer {
+    display: block;
+}
+
+#quizresults {
+    border-collapse: collapse;
+    margin: 24px auto;
+}
+
+#quizresults td {
+    padding: 6px 12px;
+    border: 1px solid black;
+}
+
+#homepage-classcode {
+    border-left-width: 1px;
+    border-left-style: solid;
+}
+
+#homepage-purchase {
+    border-top-width: 1px;
+    border-top-style: solid;
+}
+
+.short-alert {
+    padding-top: 100px;
+    padding-bottom: 120px;
+    text-align: center;
+}
+
+.short-alert a {
+    display: block;
+    margin-top: 12px;
+}
+
+#regform {
+    display: table;
+    margin: auto;
+}
+
+#regform > label {
+    display: table-row;
+}
+
+#regform > label > * {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#regform > label > span {
+    padding: 12px;
+    text-align: right;
+}
+
+#regform hr {
+    border: none;
+    display: table-row;
+    height: 16px;
+}
+
+#regform #pronounrow, #regform .custompronoun, #regform .conjugation {
+    display: none;
+}
+
+#regform.other-gender #pronounrow, #regform.other-pronouns .custompronoun, #regform.other-conjugations .conjugation {
+    display: table-row;
+}
+
+#map {
+    width: 500px;
+    height: 308px;
+    background: url(island_map.png);
+    margin: auto;
+    position: relative;
+}
+
+#map > * {
+    position: absolute;
+}
+
+#map #ma1 {
+    left: 41px; top: 100px;
+}
+
+#map #en1 {
+    left: 316px; top: 95px;
+}
+
+#map #ss1 {
+    left: 219px; top: 194px;
+}
+
+#map #exam {
+    left: 167px; top: 142px;
+}
+
+#map #ma2 {
+    left: 360px; top: 165px;
+}
+
+#map #en2 {
+    left: 176px; top: 72px;
+}
+
+#map #ss2 {
+    left: 64px; top: 181px;
+}
+
+#missedsomething {
+    margin: auto;
+    margin-top: 1000px;
+    margin-top: 100vh;
+    margin-bottom: 16px;
+    padding: 14px;
+    width: 500px;
+    font-size: 16px;
+    font-family: "Times New Roman", serif;
+    background: white;
+    border: 1px solid black;
+}
+
+@keyframes fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

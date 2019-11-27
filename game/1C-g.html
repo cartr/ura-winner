@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" /> 
+        <title>URA Winner!</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
+    <body>
+        <h1>URA Winner!</h1>
+        <div id="container">
+            <main>
+                
+
+<img src="head_exam.gif" alt="URA Examination Center" />
+
+
+
+
+
+
+
+<h2><img src="st1_3.png" alt="Final Practice" /><img src="st2_en.png" alt="English Section" /></h2>
+
+
+
+
+<p style="line-height: 16px;">The following is an abridged excerpt from a recent local news story.</p>
+
+<blockquote>
+<span id="lastsecret">Surprise</span> and mild amusement gripped the residents of Examination Island today as local police discovered a crate containing hundreds of rubber ducks at the bottom of Opportunity Bay.<br><br>
+Police say they believe the crate fell out of a delivery truck during the Achievement Bridge disaster last month. No additional charges related to the ducks have been filed.<br><br>
+Local fisherman Hardy Stevens says he's happy the source of the ducks has finally been located. "I'd been wondering where all those little guys came from; almost thought it was the PVC bait I was using!"<br><br>
+The Environmental Committee reminds all residents to dispose of their trash in appropriate receptacles, not by dumping it into bodies of water.
+</blockquote>
+
+    <script>
+      document.getElementById("lastsecret").onclick = function() {
+          document.open();
+          document.write("\u003c!DOCTYPE html\u003e\n\u003chtml\u003e\n    \u003chead\u003e\n        \u003cmeta charset=\"utf-8\" /\u003e \n        \u003ctitle\u003eURA Winner!\u003c/title\u003e\n        \u003clink rel=\"stylesheet\" type=\"text/css\" href=\"style.css\" /\u003e\n    \u003c/head\u003e\n    \u003cbody\u003e\n        \u003ch1\u003eURA Winner!\u003c/h1\u003e\n        \u003cdiv id=\"container\"\u003e\n            \u003cmain\u003e\n                \n\n\u003cimg src=\"head_exam.gif\" alt=\"URA Examination Center\" /\u003e\n\n\u003ch2\u003e\u003cimg src=\"st1_3.png\" alt=\"Final Practice\" /\u003e\u003cimg src=\"st2_en.png\" alt=\"English Section\" /\u003e\u003c/h2\u003e\n\n\u003cp style=\"line-height: 16px;\"\u003eThe following is an abridged excerpt from a\u7220\u6365\u6e65\u2074\u696c\u6566\u6520\u6576\u746e.\u003c/p\u003e\n\n\u003cblockquote id=\"game\"\u003e\n\u003c/blockquote\u003e\n\n\u003cscript\u003e\nfunction onetime(page) {\n    disabled[page] = true;\n}\nvar stations = [\"\", \"North Chumbley\", \"South Chumbley\", \"Art Row\", \"Opportunity Bay\", \"City Center\", \"Montgomery Street\", \"Powell Street\", \"UN Plaza\", \"Sixteenth Street Mission\", \"Twenty-Fourth Street Mission\", \"Glen Park\", \"Balboa Park\", \"Daly City\", \"Colma\", \"South Examination Island\", \"San Bruno\", \"Millbrae\", \"\u7542\u6666\u7265\u6f20\u6576\u7272\u6e75\u6520\u6378\u7065\u6974\u6e6f\", \"\u5554\u4e52\u4220\u4341\u204b\u4f4e\u2157\u2121\", \"(NO SIGNAL)(NO SIGNAL)(NO SIGNAL)\", \"\u4e5b\u204f\u4953\u4e47\u4c41\u5b5d\u4f4e\u5320\u4749\u414e\u5d4c\u4e5b\u204f\u4953\u4e47\u4c41\u205d\", \"pbb4g7\", \"\u003cbig\u003ePBB4G7\u003c/big\u003e\", \"\u003cbig\u003e\u003cbig\u003e\u003cbig\u003ePBB4G7\u003c/big\u003e\u003c/big\u003e\u003c/big\u003e\", \"\u003cbig\u003e\u003cbig\u003e\u003cbig\u003e\u003cbig\u003e\u003cbig\u003e\u003cbig\u003e\u003cbig\u003e\u003cbig\u003e\u003cbig\u003ePBB4G7\u003c/big\u003e\u003c/big\u003e\u003c/big\u003e\u003c/big\u003e\u003c/big\u003e\u003c/big\u003e\u003c/big\u003e\u003c/big\u003e\u003c/big\u003e\"];\nvar stationgoal = 5; // City Center\nvar game = {\n    intro1: { text: \"Surprise, surprise, you missed the shuttle to [work] again. Jeez, would it kill them to actually stick to the schedule for once? Now you have to take the \u003cem\u003esubway\u003c/em\u003e. Ugh.\\n\\nThe subway station is crowded, and smelly, and terrible. As usual.\\n\\nYou [head for a turnstile|turnstile]. You [go to a ticket machine|ticketmachine]. You [storm off|stormoff].\" },\n    work: { action: onetime, text: \"Answering multiple-choice questions all day might be a little soul-sucking, but as long as the checks keep clearing, you suppose it isn't the worst way to make a living. Besides, your boss says you're helping to build the next generation of artificial intelligence or something.\\n\\n[Back|BACK]\"},\n    stormoff: { action: onetime, text: \"Yeah, you know what? You don't have to put up with this! Who says you have to show up at work today!?\\n\\n...Well, on second thought, you're out of vacation days and you kind of need this job. You [return to the subway station|BACK].\"},\n    ticketmachine: { action: function() {\n        if (state.turnstile) {\n            if (state.boughtticket) {\n                return \"Just for good measure, you head back to the ticket machine and swipe your pass again.\\n\\nYup, you're all set.\\n\\n[Back|BACK]\";\n            } else {\n                state.boughtticket = true;\n                var result = \"\";\n                if (state.sawticketmachine) {\n                    result = \"You head back to the ticket machine and stand in line again. Eventually, you make it to the front of the line and \"\n                } else {\n                    result = \"You go over to the ticket machine, stand in line for a while, and eventually make it to the front and \"\n                }\n                result += \"wave your transit card in the vague direction of the reader.\\n\\nINSUFFICIENT BALANCE, it says. Well, yeah, you knew that already. You press the big green ADD FUNDS button, shove a crumpled-up Hamilton into the bill slot, and the machine tells you to HOLD CARD AGAINST READER TO LOAD NEW BALANCE.\\n\\nYou dutifully swipe your card again. Beeeeeeep. You suppose that means [the balance is no longer insufficient|BACK].\"\n                return result;\n            }\n        } else if (state.sawticketmachine) {\n            return \"You walk back up to the ticket machine and stick your hand in your pocket. Yup, you've still got your transit card. No need to buy a paper ticket.\\n\\n[Back|BACK]\";\n        } else {\n            state.sawticketmachine = true;\n            return \"You walk up to the ticket machine and wait for the guy in front of you to finish fumbling around with his wallet. Doesn't he know he's supposed to get his cash ready \u003cem\u003ebefore\u003c/em\u003e he's at the front of the line holding everyone else up?\\n\\nWhile you're waiting in line, you fish through your wallet and find an Underground Rail Authority Electronic Transit Pass. Guess you don't need to buy a paper ticket after all.\\n\\n[Back|BACK]\"\n        }\n    }},\n    turnstile: { action: function() {\n        if (state.boughtticket) {\n            return \"You trudge back over to the turnstile and try your card again. Your robot overlords decide you're allowed to ride the train today after all. \u003cem\u003eFinally.\u003c/em\u003e\\n\\nYou [go down the stairs to the platform|platformstart].\"\n        } else if (state.turnstile) {\n            return \"You try another turnstile. INSUFFICIENT FUNDS. Drat.\\n\\n[Back|BACK]\";\n        } else {\n            state.turnstile = true;\n            var result = \"You head over to the turnstile and take out your \";\n            if (state.sawticketmachine) {\n                result += \"URAETP\";\n            } else {\n                result += \"transit card\";\n            }\n            result += \". You swipe it against the reader, but the turnstile doesn't let you through. It just beeps at you. You swipe your card a couple more times, to no avail&mdash;the Underground Rail Authority couldn't make a reliable card reader if their lives depended on it&mdash;and eventually notice the tiny dot-matrix screen blinking at you.\\n\\nINSUFFICIENT FUNDS\\n\\nOh, [come \u003cem\u003eon\u003c/em\u003e|BACK].\"\n            return result;\n        }\n    }},\n    platformstart: { action: function() { state.station = 0; }, text: \"You head down to the platform and [wait for a train|firsttrain].\" },\n    firsttrain: { text: \"After what feels like forever, a train arrives. \\\"City Center-bound train,\\\" the conductor yells, \\\"city center.\\\" Perfect&mdash;your office is in the city center.\\n\\nYou [get on the train|boardtrain]. You [-stand there like an imbicile|misstrain].\" },\n    boardtrain: { action: function() { state.traindirection = 1; }, text: \"You step through the doors and try and find an empty seat. Of course there aren't any empty seats. There are never any empty seats.\\n\\nThe train [starts moving|ridetrain].\"},\n    misstrain: { action: function() {\n        var stationtext = stations[state.station];\n            if (state.station === 0) {return \"The train whizzes past you, and now you're standing on the station platform all alone.\\n\\nYou suppose there isn't much to do except [wait for another train|forthtrain].\";\n        } else {\n            return \"The train whizzes past you, and now you're standing in the \" + stationtext + \" station all alone.\\n\\nYou suppose there isn't much to do except [wait for another train|backtrain].\";\n        }\n    }},\n    backtrain: { action: function() {\n        var stationtext = stations[state.station];\n        var result = \"You're standing on the \" + stationtext + \" station platform.\\n\\nA train going in the opposite direction, heading back to where you started, pulls up to the station.\\n\\n\";\n        if (state.station \u003e stationgoal) {\n            return result + \"You [get on the train|boardbacktrain]. You [-stay where you are|missbacktrain].\";\n        } else {\n            return result + \"You [-get on the train|boardbacktrain]. You [stay where you are|missbacktrain].\";\n        }\n    }},\n    missbacktrain: { action: function() {\n        var stationtext = stations[state.station];\n        return \"The train whizzes past you, and now you're once again standing in the \" + stationtext + \" station all alone.\\n\\nYou suppose there isn't much to do except [wait for another train|forthtrain].\"\n    }},\n    boardbacktrain: { action: function() { state.traindirection = -1; }, text: \"The train's pretty packed, and you can barely manage to squish yourself through the doors. You stick your backpack between your legs to try and minimize the space you take up.\\n\\nThe train [starts moving|ridetrain].\"},\n    forthtrain: { action: function() {\n        var stationtext = stations[state.station];\n        var result = \"You're standing on the \" + stationtext + \" station platform.\\n\\nAnother City Center-bound train pulls up.\\n\\n\";\n        if (state.station \u003c stationgoal) {\n            return result + \"You [get on the train|boardtrain]. You [-stay where you are|misstrain].\";\n        } else {\n            return result + \"Wait, \\\"City Center-bound\\\"? That doesn't seem right. Didn't you already go past City Center station? Why did you do that? Thinking about it further, you decide that this train will actually take you \u003cem\u003eaway\u003c/em\u003e from your intended destination. You should wait for a train going the other way.\\n\\nYou [-get on the train|boardtrain]. You [stay where you are|misstrain].\";\n        }\n    }},\n    ridetrain: { action: function() {\n        state.station = state.station + state.traindirection;\n        if (state.station \u003e= stations.length) {\n            setTimeout(function() {\n                document.open();\n                document.write(\"\\u003c!DOCTYPE html\\u003e\\n\\u003chtml\\u003e\\n\\u003chead\\u003e\\n\\t\\u003ctitle\\u003eYour Let's Explore Geography! Student Access Code\\u003c/title\\u003e\\n\\t\\u003cmeta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1\\\"\\u003e\\n\\t\\u003c!-- If I wanted to be extra realistic, I'd write perfectly valid XHTML 3 and include like a million meta tags filled with garbage. But c'mon, no one's ever gonna \\\"View Source\\\" the IFComp submission landing page, right? --\\u003e\\n\\u003c/head\\u003e\\n\\u003cbody style=\\\"max-width:7in;\\\"\\u003e\\n\\t\\u003ch1\\u003eLincoln School District Mail\\u003c/h1\\u003e\\n\\t\\u003chr\\u003e\\n\\t\\u003cstrong\\u003eFrom:\\u003c/strong\\u003e &ldquo;Carter Sande&rdquo; &lt;carter.sande@duodecima.technology&gt;\\u003cbr\\u003e\\n\\t\\u003cstrong\\u003eSent:\\u003c/strong\\u003e Friday, September 28, 2018 11:57 PM\\u003c/br\\u003e\\n\\t\\u003cstrong\\u003eSubject:\\u003c/strong\\u003e Your Let's Explore Geography! Student Access Code\\n\\t\\u003chr\\u003e\\n\\t\\u003cp\\u003eThank you for purchasing \\u003cem\\u003eLet's Explore Geography! Canadian Commodities Trader Simulation Exercise\\u003c/em\\u003e. We're certain your students will enjoy this engaging, interactive virtual activity.\\u003c/p\\u003e\\n\\t\\u003cp\\u003eTo access the activity, please direct your students to visit \\u003ca href=\\\"guLD.html\\\" id=\\\"link\\\"\\u003eour website\\u003c/a\\u003e and enter the following class code:\\u003c/p\\u003e\\n\\t\\u003cdiv style=\\\"margin: 2em; padding: 1em; border: 0.5em solid black; text-align:center; border-radius: 1em; font: 0.9em sans-serif\\\"\\u003e\\n\\t\\tYour class code is:\\n\\t\\t\\u003cdiv style=\\\"font-size:3em; font-weight:bold;\\\"\\u003e\\n\\t\\t\\tPBB 4G7\\n\\t\\t\\u003c/div\\u003e\\n\\t\\u003c/div\\u003e\\n\\t\\u003cp\\u003eYou may want to print a copy of \\u003ca href=\\\"#\\\" id=\\\"link2\\\"\\u003ethe companion map\\u003c/a\\u003e for each student. A \\u003ca href=\\\"#\\\" id=\\\"link3\\\"\\u003eteacher's guide and solution manual\\u003c/a\\u003e is also available; contact your Duodecima Edu-tainment sales representative for more information.\\u003c/p\\u003e\\n\\t\\u003cp\\u003eThanks once again for choosing Duodecima Edu-tainment, and have an edu-taining day!\\u003c/p\\u003e\\n\\t\\u003cbr\\u003e\\n\\t\\u003cp\\u003eKind regards,\\u003c/p\\u003e\\n\\t\\u003cdiv style=\\\"font: 1.1em sans-serif;\\\"\\u003e\\n\\t\\t\\u003cdiv style=\\\"font-size: 1.5em;\\\"\\u003eCarter Sande\\u003c/div\\u003e\\n\\t\\tTechnical Solutions Associate\\u003cbr\\u003e\\n\\t\\tDuodecima Edu-tainment\\u003cbr\\u003e\\n\\t\\t\\u003cp\\u003e\\u003csmall\\u003e(This is an automated message; replies will not be monitored.)\\u003c/small\\u003e\\u003c/p\\u003e\\n\\t\\u003c/div\\u003e\\n    \\u003cscript\\u003e\\n        function redirect() {\\n            document.open();\\n            document.write(\\\"\\\\u003c!DOCTYPE html\\\\u003e\\\\n\\\\u003chtml\\\\u003e\\\\n    \\\\u003chead\\\\u003e\\\\n        \\\\u003cmeta charset=\\\\\\\"utf-8\\\\\\\" /\\\\u003e \\\\n        \\\\u003ctitle\\\\u003eURA Winner!\\\\u003c/title\\\\u003e\\\\n        \\\\u003clink rel=\\\\\\\"stylesheet\\\\\\\" type=\\\\\\\"text/css\\\\\\\" href=\\\\\\\"style.css\\\\\\\" /\\\\u003e\\\\n    \\\\u003c/head\\\\u003e\\\\n    \\\\u003cbody\\\\u003e\\\\n        \\\\u003ch1\\\\u003eURA Winner!\\\\u003c/h1\\\\u003e\\\\n        \\\\u003cdiv id=\\\\\\\"container\\\\\\\"\\\\u003e\\\\n            \\\\u003cmain\\\\u003e\\\\n                \\\\n\\\\u003ctable id=\\\\\\\"homepage-table\\\\\\\" cellpadding=\\\\\\\"50\\\\\\\" cellspacing=\\\\\\\"0\\\\\\\"\\\\u003e\\\\n    \\\\u003ctr\\\\u003e\\\\n        \\\\u003ctd width=\\\\\\\"50%\\\\\\\" id=\\\\\\\"homepage-getting-started\\\\\\\"\\\\u003e\\\\n            \\\\u003ccenter\\\\u003e\\\\n                Using this software for the first time?\\\\n                \\\\u003cbr /\\\\u003e\\\\n                \\\\u003cbr /\\\\u003e\\\\n                \\\\u003ca href=\\\\\\\"c8O.html\\\\\\\"\\\\u003e\\\\u003cimg src=\\\\\\\"btn_create_acct.png\\\\\\\" alt=\\\\\\\"Create Account\\\\\\\" /\\\\u003e\\\\u003c/a\\\\u003e\\\\n            \\\\u003c/center\\\\u003e\\\\n        \\\\u003c/td\\\\u003e\\\\n        \\\\u003ctd width=\\\\\\\"50%\\\\\\\" id=\\\\\\\"homepage-classcode\\\\\\\"\\\\u003e\\\\n            \\\\u003ccenter\\\\u003e\\\\n                If you have a class code, enter it here:\\\\n                \\\\u003cbr /\\\\u003e\\\\n                \\\\u003cbr /\\\\u003e\\\\n                \\\\u003cform action=\\\\\\\"wRXo.html\\\\\\\" method=\\\\\\\"GET\\\\\\\"\\\\u003e\\\\n                    \\\\u003cinput size=\\\\\\\"10\\\\\\\" id=\\\\\\\"classcode\\\\\\\" autofocus\\\\u003e\\\\n                    \\\\u003cinput type=\\\\\\\"submit\\\\\\\" value=\\\\\\\"Submit\\\\\\\"\\\\u003e\\\\n                \\\\u003c/form\\\\u003e\\\\n            \\\\u003c/center\\\\u003e\\\\n        \\\\u003c/td\\\\u003e\\\\n    \\\\u003c/tr\\\\u003e\\\\n    \\\\u003ctr\\\\u003e\\\\n        \\\\u003ctd colspan=\\\\\\\"2\\\\\\\" id=\\\\\\\"homepage-purchase\\\\\\\"\\\\u003e\\\\n            \\\\u003ccenter\\\\u003e\\\\n              \\\\u003ccite\\\\u003eURA Winner!\\\\u003c/cite\\\\u003e is the only digital test-preparation software officially recognized by the creators of the Undergraduate Readiness Assessment. For purchasing details, contact your school's URA Sales Representative.\\\\n            \\\\u003c/center\\\\u003e\\\\n        \\\\u003c/td\\\\u003e\\\\n    \\\\u003c/tr\\\\u003e\\\\n\\\\u003c/table\\\\u003e\\\\n\\\\u003cscript\\\\u003e\\\\nvar classcode = document.getElementById('classcode');\\\\nclasscode.oninput = function() {\\\\n    \\\\n    classcode.value = \\\\\\\"pbb4g7\\\\\\\".substring(0, classcode.value.length);\\\\n    if (classcode.value.length \\\\u003e= 6) {\\\\n        window.location = \\\\\\\"1MCA.html\\\\\\\";\\\\n    }\\\\n    \\\\n}\\\\n\\\\u003c/script\\\\u003e\\\\n\\\\n            \\\\u003c/main\\\\u003e\\\\n        \\\\u003c/div\\\\u003e\\\\n        \\\\n    \\\\u003c/body\\\\u003e\\\\n\\\\u003c/html\\\\u003e\\\");\\n            document.close();\\n        }\\n        function setup(link, setcontent) {\\n            link.onfocus = redirect;\\n            link.onmouseover = redirect;\\n            link.href = 'javascript:redirect()';\\n            if (setcontent) link.textContent = window.location.hostname || window.location.host || 'our website';\\n        }\\n        setup(document.getElementById('link'), true);\\n        setup(document.getElementById('link2'));\\n        setup(document.getElementById('link3'));\\n    \\u003c/script\\u003e\\n\\u003c/body\\u003e\\n\\u003c/html\\u003e\");\n                document.close();\n            }, 0);\n            return \"\";\n        }\n        var stationtext = stations[state.station];\n        var out = state.traindirection === -1 ? 'missbacktrain' : 'misstrain';\n\n        if (state.station === 0 && state.traindirection === -1) {\n            return \"The train stops again, and the conductor announces, \\\"This is the last stop. Everyone offboard.\\\"\\n\\nYou [suppose you have no choice|missbacktrain].\";\n        } else if (state.station === stationgoal) {\n            return \"The train stops in the City Center station.\\n\\nThis is your stop, so you'd better get going.\\n\\nYou [get off the train|arrivework]. You [-stay on the train|ridetrain].\"\n        } else {\n            var result = [\"The train trundles along for a bit and comes to a stop in \", \"You hold onto the strap as the train continues to \", \"After only a couple minutes, the train stops in \", \"The train stops in \", \"The conductor announces that this stop is \", \"The next stop is \"][Math.floor(Math.random() * 6)];\n            result += stationtext + \".\\n\\n\"\n            if ((state.traindirection === 1 && state.station \u003c stationgoal) || (state.traindirection === -1 && state.station \u003e stationgoal)) {\n                result += \"You [-get off the train|\" + out + \"]. You [stay on the train|ridetrain].\"\n            } else {\n                result += \"You [get off the train|\" + out + \"]. You [-stay on the train|ridetrain].\"\n            }\n            return result;\n        }\n    }},\n    arrivework: { text: \"You hurry out of the station and run the rest of the way to work. Sure, it wasn't the greatest transit experience in the world, but at least you managed to make it in on time.\\n\\n\\n\\n\\n...But still, you can't help but feel like you [-missed something|intro1].\"},\n};\n\nvar disabled = {\n    turnstile: function () {\n        return state.turnstile && !state.boughtticket;\n    },\n    ticketmachine: function() {\n        return (state.sawticketmachine && !state.turnstile) || state.boughtticket;\n    }\n};\n\nvar state = {station: 0};\n\nfunction go(page) {\n    if (page === 'BACK') {\n        return go(state.last);\n    }\n    state.last = state.current;\n    state.current = page;\n    var text = (game[page].action && game[page].action(page)) || game[page].text;\n    var elem = document.getElementById(\"game\");\n    elem.innerHTML = \"\";\n    var currentSnippet = \"\";\n\n    for (var i = 0; i \u003c text.length; i++) {\n        var char = text[i];\n        if (char == \"[\") {\n            elem.innerHTML += currentSnippet;\n            currentSnippet = \"\";\n            var linktext = \"\";\n            for (i++; text[i] && text[i] !== ']' && text[i] !== \"|\"; i++) {\n                linktext += text[i];\n            }\n            var linkdestination = \"\";\n            if (text[i] == \"]\") {\n                linkdestination = linktext;\n            } else {\n                for (i++; text[i] && text[i] !== ']' && text[i] !== \"|\"; i++) {\n                    linkdestination += text[i];\n                }\n            }\n            var link = document.createElement(\"a\");\n            var isDisabled = disabled[linkdestination];\n            if (typeof isDisabled === 'function') isDisabled = isDisabled();\n            link.innerHTML = linktext;\n            link.href = \"javascript:go('\" + linkdestination + \"')\";\n            link.onclick = function() { console.log(\"click!\"); alert(linkdestination); go(linkdestination) };\n            if (linktext[0] === \"!\") {\n                link.innerHTMl = linktext.substring(1);\n                isDisabled = false;\n            } else if (linktext[0] === \"-\") {\n                link.innerHTML = linktext.substring(1);\n                isDisabled = true;\n            }\n            if (isDisabled) {\n                link.className = \"disabled\";\n            }\n            elem.appendChild(link);\n        } else if (char == \"\\n\") {\n            elem.innerHTML += currentSnippet;\n            currentSnippet = \"\";\n            elem.appendChild(document.createElement(\"br\"));\n        } else {\n            currentSnippet += char;\n        }\n    }\n\n    elem.innerHTML += currentSnippet;\n}\n\ngo('intro1');\n\u003c/script\u003e\n\n\n            \u003c/main\u003e\n        \u003c/div\u003e\n        \n    \u003c/body\u003e\n\u003c/html\u003e");
+          document.close();
+      }
+      document.getElementById("lastsecret").className = "link";
+    </script>
+
+
+
+    
+        
+        
+        
+        
+        
+
+        
+        <div class="question">
+            <strong>Q1:</strong>
+            
+Which organizational style is used in this piece?
+
+            
+            
+                <a href="cVVR.html" class="answer">
+                    <img src="resp_a.png" />
+                    inverted pyramid
+                </a>
+            
+            
+        
+
+            
+            
+                <a href="nVsi.html" class="answer">
+                    <img src="resp_b.png" />
+                    anecdotal lead
+                </a>
+            
+            
+        
+
+            
+            
+                <a href="t2up.html" class="answer">
+                    <img src="resp_c.png" />
+                    top line up front
+                </a>
+            
+            
+        
+
+            
+            
+                <a href="tC8l.html" class="answer">
+                    <img src="resp_d.png" />
+                    narrative
+                </a>
+            
+            
+        
+
+        </div>
+    
+
+
+
+    
+
+
+
+    
+
+
+
+    
+
+
+
+
+
+
+            </main>
+        </div>
+        
+
+
+    </body>
+</html>

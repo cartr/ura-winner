@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" /> 
+        <title>URA Winner!</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
+    <body>
+        <h1>URA Winner!</h1>
+        <div id="container">
+            <main>
+                
+<img src="head_iqaluit.gif" alt="Iqaluit" id="headpic" />
+<div id="game" style="min-height: 220px; margin-top: 16px;">
+</div>
+
+<script>
+    var game = document.getElementById("game");
+    var animTimeouts = [];
+    
+    function clear() {
+        game.innerHTML = "";
+        for (var i = 0; i < animTimeouts.length; i++) {
+            clearTimeout(animTimeouts[i]);
+        }
+        animTimeouts = [];
+    }
+
+    function animTimeout(callback, delay) {
+        var timeout = setTimeout(function() {
+            for (var i = animTimeouts.length; i >= 0; i--) {
+                if (animTimeouts[i] == timeout) {
+                    animTimeouts.splice(i, 1);
+                }
+            }
+            callback();
+        }, delay);
+        animTimeouts[animTimeouts.length] = timeout;
+    }
+
+    function f(func, arg1, arg2, arg3, arg4) {
+        return function() { func(arg1, arg2, arg3, arg4); };
+    }
+
+    function append(node) {
+        game.appendChild(node);
+    }
+
+    function addText(text, callback, duration) {
+        if (duration === undefined) duration = 400;
+        var newNode = document.createElement("span");
+        if (duration > 0) {
+            try { newNode.style.animation = "fade " + duration + "ms ease forwards"; } catch { }
+        }
+        newNode.innerHTML = text.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/&/g, "&amp;").replace(/(?:\r\n|\r|\n)/g, "<br>");
+        append(newNode);
+        if (callback) {
+            animTimeout(callback, duration);
+        }
+    }
+
+    function typeText(text, callback, speed) {
+        if (speed === undefined) speed = 80;
+        if (!text) { if (callback) callback(); }
+        else {
+            addText(text[0], function() {
+                typeText(text.substr(1), callback, speed);
+            }, speed)
+        }
+    }
+
+    function successiveStrings(strings, callback, speed) {
+        if (speed === undefined) speed = 300;
+        for (var i = 0; i < strings.length; i++) {
+            animTimeout(f(addText, strings[i], false, speed), speed * (i + 1));
+        }
+        if (callback) animTimeout(callback, speed * (strings.length + 1));
+    }
+
+    var menuImages = ["resp_a.png", "resp_b.png", "resp_c.png", "resp_d.png", "resp_e.png"];
+    var menuImageClicked = "resp_filled.png";
+    var optionImages = [];
+    var optionCallbacks = [];
+
+    function option(i) {
+        if (animTimeouts.length) return;
+        if (!optionCallbacks[i]) return;
+
+        optionImages[i].src = menuImageClicked;
+        try { optionImages[i].parentNode.style.fontWeight = 'normal'; } catch { }
+        try { optionImages[i].parentNode.style.textDecoration = 'none'; } catch { }
+        try { game.style.animation = "fade 300ms ease reverse forwards"; } catch { }
+        animTimeout(function() {
+            clear();
+            try { game.style.animation = ""; } catch { }
+            optionCallbacks[i]();
+        }, 300)
+    }
+
+    function obelisk(n, s) {
+        n.nodeValue = " " + s;
+    }
+
+    function menuOptions(options, callback, speed, duration) {
+        append(document.createElement("br"));
+        append(document.createElement("br"));
+        if (speed === undefined) speed = 100;
+        if (duration === undefined) duration = 1000;
+        for (var i = 0; i < options.length; i++) {
+            var image = document.createElement('img');
+            image.src = menuImages[i];
+            var option = document.createElement('a');
+            option.href = 'javascript:option(' + i + ')';
+            option.className = 'answer';
+            option.appendChild(image);
+            var textNode = document.createTextNode(" " + options[i].text);
+            option.appendChild(textNode);
+            if (options[i].obelisk) {
+                option.onmouseover = f(obelisk, textNode, options[i].obelisk);
+                option.onfocus = f(obelisk, textNode, options[i].obelisk);
+            }
+            try { option.style.animation = "fade " + duration + "ms ease forwards"; } catch { }
+            animTimeout(f(append, option), speed * i);
+            optionImages[i] = image;
+            optionCallbacks[i] = options[i].action;
+        }
+        if (callback) animTimeout(callback, speed * options.length);
+    }
+
+    function updateActivityArr(index, callback) {
+        if (nextActivity > activities.length) {
+            currentActivities[index] = -1;
+        } else {
+            currentActivities[index] = nextActivity;
+            nextActivity += 1;
+        }
+        callback();
+    }
+
+    var cash = 42371;
+    function mainMenu() {
+        clear();
+        var activityOptions = [];
+        var hasAnyActivity = false;
+        for (var i = 0; i < currentActivities.length; i++) {
+            activityOptions[activityOptions.length] = activities[currentActivities[i]] ? {
+                text: activities[currentActivities[i]].text,
+                action: f(updateActivityArr, i, activities[currentActivities[i]].action)
+            } : {
+                text: '[NO SIGNAL]'
+            };
+            if (activities[currentActivities[i]]) hasAnyActivity = true;
+        }
+        if (!hasAnyActivity) {
+            activityOptions = [activities[0], activities[0], activities[0], activities[0], activities[0]]
+        }
+        addText("$" + cash + " | Afternoon, Day 286 | Fuel: full | 0 pallets\n\nWelcome to Iqaluit!", f(animTimeout, f(menuOptions, activityOptions)));
+    }
+
+    function backButton(text) {
+        menuOptions([{
+            text: text || "Back",
+            action: mainMenu
+        }]);
+    }
+
+    var activities = [{
+        text: "Head out",
+        action: function() {
+            addText("Where to?", f(menuOptions, [{
+                text: "Never mind",
+                action: mainMenu
+            }, {
+                text: "Take the ice road to Inuvik",
+                action: function() {
+                    whereToPasses[whereToPass]();
+                    whereToPass += 1;
+                }
+            }]));
+        }
+    }, {
+        text: "Visit a hotel",
+        action: function() {
+            function hotelAction(h) {
+                return function() { addText("You start heading for the " + h + ", but on your way there, you decide that you aren't really feeling so tired after all. There's still plenty of daylight left and lots of fun things to do!\n\n(Maybe you should come back a little later in the evening.)");
+                backButton();
+                };
+            }
+            addText("What kind of hotel would you like to go to?", f(menuOptions, [{
+                text: "Never mind",
+                action: mainMenu
+            }, {
+                text: "Cheap motel - $50",
+                action: hotelAction("cheap motel")
+            }, {
+                text: "Hotel - $150",
+                action: hotelAction("hotel")
+            }]));
+        }
+    }, {
+        text: "Pull into a gas station",
+        action: f(addText, "You drive up to a gas station, but your truck's tank is already pretty much full. To avoid feeling silly, you decide to check your tire pressure.\n\nYour tire pressure is fine. (It's always fine.)", f(backButton, "Back to town!"))
+    }, {
+        text: "Walk around town",
+        action: f(addText, "You walk around town but don't really see anything of interest.", backButton)
+    }, {
+        text: "Trade commodities",
+        action: f(addText, "You haven't done that in a long time.", backButton)
+    }, {
+        text: "Check out the Unikkaarvik Visitor Centre",
+        action: f(addText, "The Unikkaarvik Visitor Centre has a wide variety of exhibits related to life in the Arctic, from animal dioramas to Inuit art. You walk past a carving of a drum dancer to check out an exhibit about the Inuit seasonal calendar.\n\nAs it turns out, the traditional four seasons of spring, summer, fall, and winter don't really make sense this far north. The Inuit created a more sophisticated calendar with six seasons to keep better track of how the Arctic environment changes throughout the year. Some versions of the calendar even have a seventh season!\n\nYou're glad you took this opportunity to learn more about another culture.", backButton)
+    }, {
+        text: "Mail a postcard",
+        action: f(addText, "You've been meaning to mail your parents a postcard to tell them all about life in Iqaluit. Today's as good a day as any, so you head to the post office.\n\nWhile you're standing in line, you notice that the person in front of you is mailing a letter that doesn't have an address on it. Instead, they've just written \"General Delivery\". You ask them what General Delivery is.\n\n\"Oh, this? They don't deliver mail to people's houses around here--too much snow--and there aren't enough P.O. boxes to go around. So you just write General Delivery on the envelope and then the person can come pick it up from the post office.\"", backButton)
+    }, {
+        text: "See the Nakasuk School",
+        action: f(addText, "On your way to buy groceries the other day, you noticed a really strange-looking building. It almost looked like a Martian military base: a stark, white, six-sided structure with a trapezoid-shaped entrance. What could such an odd building possibly be used for?\n\nYou check it out and discover that it's actually Nakasuk Elementary School. The school was made out of fiberglass and designed to look like a block of ice.\n\nYou suppose that's as good a design as any for an elementary school. (But maybe it could use a few more windows...)", backButton)
+    }, {
+        text: "Go dogsledding",
+        action: f(addText, "You've always wanted to go dogsledding, but there's a problem: you don't know how. How do you tell the dogs to start running, or stop? What do you do if they're going the wrong way? You aren't sure you have what it takes to lead a pack of dogs through the wilderness.\n\nLuckily, the outfitter tells you that you won't have to drive. A professional \"musher\" will guide the dogs while telling you all about your surroundings. Phew!\n\nYou have a good time riding through the tundra with the musher. Sled dogs can sure run fast!", backButton)
+    }, {
+        text: "Visit the Nunatta Sunakkutaangit Museum",
+        action: f(addText, "The Nunatta Sunakkutaangit Museum is the only museum in the Canadian territory of Nunavut. It houses an archive of Inuit artifacts as well as rotating contemporary art exhibitions.\n\nYou suppose you shouldn't pass up the chance to see the best museum in Nunavut, so you head over. This month's exhibit features newspaper cartoons by a local artist. You don't quite get all of the political references, but the drawings seem nice enough.", backButton)
+    }];
+
+    var ns = "[NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGNAL][NO SIGN";
+
+    function wakeUp(callback) {
+        clear();
+        typeText(ns, function() { clear(); callback(); }, 1);
+    }
+
+    var whereToPass = 0;
+    var whereToPasses = [
+        f(addText, "The ice road is closed for the summer.", backButton),
+        f(addText, "You decide to head back to the ice road. It's still closed.\n\nWhile the ice doesn't appear to have melted completely, it's too thin to drive across safely. (Especially in a big truck like yours!)", backButton),
+        f(addText, "The ice bridge is closed; the ice is too thin to drive on safely.", f(menuOptions, [
+            { text: "Back", action: function() {  whereToPass -= 1; mainMenu(); }},
+            { text: "Drive across anyway", action: function() {
+                addText("Against your better judgement, you start driving across the ice road.\n\nYour hands shake as you grip the wheel. Did you just hear the ice start to crack underneath you? You're feeling nervous, so you drive slowly and carefully, until you realize that it might actually be safer to minimize the amount of time you spend on the ice road.\n\nYou grit your teeth and speed up.", f(menuOptions, [{
+                    text: "Continue", action: f(addText, "After a few hours, the city of Inuvik, Northwest Territories finally comes into view on the horizon. You're almost there.\n\nYou can see", f(menuOptions, [{
+                        text: "a strange pillar", obelisk: "THE OBELISK", action: f(typeText, "SUDDENLY, THE ICE CRACKS BENEATH YOUR TRUCK. YOU FALL INTO THE WATER. IT'S FREEZING, YOU DON'T KNOW WHAT TO DO, YOU CAN'T GET OUT OF YOUR TRUCK, YOU CAN'T BREA", f(wakeUp, f(addText, "What a strange dream!", f(backButton, "Continue"), 0)))
+                    }], f(addText, "here.")))
+                }]))
+            }}
+        ])),
+        f(typeText, "IT'S CLOSED. GO HOME.", f(menuOptions, [
+            { text: "Back", action: function() {  whereToPass -= 1; mainMenu(); }},
+            { text: "Drive across anyway", action: function() {
+                addText("Against your better judgement, you start driving across the ice road.\n\nYour hands shake as you grip the wheel. Did you just hear the ice start to crack underneath you? You're feeling nervous, so you drive slowly and carefully, until you realize that it might actually be safer to minimize the amount of time you spend on the ice road.\n\nYou grit your teeth and speed up.", f(menuOptions, [{
+                    text: "Continue", action: f(addText, "After a few hours, the city of Inuvik, Northwest Territories comes into view on the horizon once again. (\"Once again?\" Have you driven this way before, or was that just déjà vu?) You're almost there.\n\nYou can see a strange pillar here.", f(menuOptions, [{
+                        text: "Drive into the pillar", obelisk: "DESTROY THE OBELISK", action: f(
+                            typeText,
+                            "You point your truck at the pillar, close your eyes, and slam on the gas pedal.\n\nTHE OBELISK EXPLODES IN A SHOWER OF LIGHT AND SPAR",
+                            f(wakeUp, function() {
+                                try { document.getElementById("headpic").style.display = "none"; } catch { }
+                                successiveStrings(["", "", ".", "", ".", "", ".", "\n\nYou ", "open ", "your ", "eyes.", "\n", "\n", "That ", "THING", "--pillar, ", "obelisk, ", "whatever", "--is gone. ", "Just rubble. ", "It won't bother ", "anyone ", "ever again.", "\n\n", "You get out of your truck, ", "collect your Spider-Man comic, ", "and start making your way back to Toronto.", "\n", "\n", "\n", "\n", "\n", "- END -"])
+                            })
+                        )
+                    }]))
+                }]))
+            }}
+        ]))
+    ]
+
+    var currentActivities = [0, 1, 2, 3, 4];
+    var nextActivity = 5;
+
+    addText("It's been a few months since you moved to Iqaluit, Canada.\n\nYour rent and expenses are a little higher than you're used to--most supplies need to be brought in from elsewhere, so the cost of living is 50% higher than the Canadian national average--but all in all, you're happy with your decision to move here.\n\nLife here feels a lot more easy-going than life in the big city. It's nice; the customers at the bank are friendly, and you know almost all of them by name. And on the weekends, you can explore Iqaluit's many landmarks and cultural attractions.", f(menuOptions, [{ text: "Continue", action: f(
+        addText,
+        "Part of you does miss commodities trading out on the open road, but deep down inside, you know that it probably wouldn't have ever made you much money. The size of your truck limits the amount you can buy and sell at one time, and even when you're hauling something small and valuable, you still have to pay for fuel, hotels, insurance... Trading ETFs and derivatives on your computer is a much more practical use of your skills.\n\nBesides, you couldn't leave Iqaluit now even if you wanted to. The town's only connection to the rest of Canada, an ice road, is closed for the summer. You might be able to catch a flight, but airplane tickets out of Iqaluit are really expensive, and what would happen to your truck?\n\nYou decide you'd rather not think about that right now. You have a day off work today, so you set out into Iqaluit to look for something fun to do.",
+        f(menuOptions, [{ text: "Continue", action: mainMenu}])
+    )}]));
+</script>
+
+            </main>
+        </div>
+        
+    </body>
+</html>
